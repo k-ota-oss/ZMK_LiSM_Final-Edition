@@ -1,0 +1,9 @@
+name: ZMK build
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
