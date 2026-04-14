@@ -81,6 +81,10 @@
     };
 };
 
+&mmv_input_listener {
+    input-processors = <&zip_temp_layer 1 1500>;
+};
+
 &mkp_input_listener {
     input-processors = <&zip_temp_layer 1 1500>;
 };
