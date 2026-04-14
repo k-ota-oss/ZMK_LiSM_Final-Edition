@@ -5,5 +5,76 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+  build-left:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare
+        run: |
+          mkdir -p /tmp/zmk-config/config
+          cp -R config/* /tmp/zmk-config/config/
+
+      - name: West
+        working-directory: /tmp/zmk-config
+        run: |
+          west init -l config
+          west update
+          west zephyr-export
+
+      - name: Build LEFT
+        working-directory: /tmp/zmk-config
+        run: |
+          west build -s zmk/app -d build-left -b seeeduino_xiao_ble -S non-trackball-peripheral -- \
+            -DZMK_CONFIG=/tmp/zmk-config/config \
+            -DSHIELD="lism_left rgbled_adapter" \
+            -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
+
+      - name: Rename
+        run: cp /tmp/zmk-config/build-left/zephyr/zmk.uf2 left.uf2
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lism_left
+          path: left.uf2
+
+  build-right:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare
+        run: |
+          mkdir -p /tmp/zmk-config/config
+          cp -R config/* /tmp/zmk-config/config/
+
+      - name: West
+        working-directory: /tmp/zmk-config
+        run: |
+          west init -l config
+          west update
+          west zephyr-export
+
+      - name: Build RIGHT (Studio)
+        working-directory: /tmp/zmk-config
+        run: |
+          west build -s zmk/app -d build-right -b seeeduino_xiao_ble -S "studio-rpc-usb-uart trackball-central" -- \
+            -DZMK_CONFIG=/tmp/zmk-config/config \
+            -DSHIELD="lism_right rgbled_adapter" \
+            -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}" \
+            -DCONFIG_ZMK_STUDIO=y \
+            -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=y
+
+      - name: Rename
+        run: cp /tmp/zmk-config/build-right/zephyr/zmk.uf2 right.uf2
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lism_right_studio
+          path: right.uf2
