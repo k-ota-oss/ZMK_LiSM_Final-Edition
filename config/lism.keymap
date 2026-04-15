@@ -16,8 +16,6 @@
                 &kp Z            &kp X            &kp C            &kp V            &kp B                               &kp N            &kp M            &kp COMMA        &kp DOT          &kp SLASH
                 &kp LSHFT        &kp LGUI         &kp LALT         &none            &lt 2 GRAVE      &mo 3               &kp BSPC         &lt 1 ENTER       &none            &kp LANG1        &kp LANG2        &lt 5 ESC
             >;
-
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
         };
 
         layer_1 {
@@ -28,8 +26,6 @@
                 &trans           &trans           &trans           &trans           &trans                             &trans           &trans           &trans           &trans           &trans
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
-
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
         };
 
         layer_2 {
@@ -40,8 +36,6 @@
                 &kp LS(N9)       &kp LS(N0)       &kp DOWN         &kp LBKT         &kp RBKT                           &kp N0           &kp N1           &kp N2           &kp LS(N3)       &trans
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
-
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
         };
 
         layer_3 {
@@ -52,8 +46,6 @@
                 &trans           &trans           &trans           &trans           &trans                             &trans           &kp F1           &kp F2           &kp F3           &none
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
-
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
         };
 
         layer_4 {
@@ -64,8 +56,6 @@
                 &trans           &trans           &trans           &trans           &trans                             &trans           &trans           &trans           &trans           &trans
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
-
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
         };
 
         layer_5 {
@@ -76,8 +66,6 @@
                 &trans           &trans           &trans           &trans           &trans                             &trans           &trans           &trans           &trans           &trans
                 &trans           &trans           &trans           &trans           &trans           &trans            &none            &trans           &none            &trans           &trans           &trans
             >;
-
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
         };
     };
 };
