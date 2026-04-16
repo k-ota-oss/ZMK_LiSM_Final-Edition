@@ -18,7 +18,7 @@
                 &kp LSHFT        &kp LGUI         &kp LALT         &none            &lt 2 GRAVE      &mo 3               &kp BSPC         &lt 1 ENTER       &none            &kp LANG1        &kp LANG2        &lt 5 ESC
             >;
 
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&encoder_msc>;
         };
 
         layer_1 {
@@ -30,7 +30,7 @@
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
 
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&encoder_msc>;
         };
 
         layer_2 {
@@ -42,7 +42,7 @@
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
 
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&encoder_msc>;
         };
 
         layer_3 {
@@ -54,7 +54,7 @@
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
 
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&encoder_msc>;
         };
 
         layer_4 {
@@ -66,7 +66,7 @@
                 &trans           &trans           &trans           &trans           &trans           &trans            &trans           &trans           &trans           &trans           &trans           &trans
             >;
 
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&encoder_msc>;
         };
 
         layer_5 {
@@ -78,7 +78,7 @@
                 &trans           &trans           &trans           &trans           &trans           &trans            &none            &trans           &none            &trans           &trans           &trans
             >;
 
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&encoder_msc>;
         };
     };
 };
