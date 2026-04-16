@@ -1,5 +1,7 @@
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/zmk/pointing.h>
 #include <physical_layouts.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
@@ -10,11 +12,19 @@
         zmk,physical-layout = &physical_42key_layout;
     };
 
+    behaviors {
+        encoder_msc: encoder_msc {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        };
+    };
+
     physical_42key_layout: physical_42key_layout {
         compatible = "zmk,physical-layout";
         display-name = "42-Key Layout";
         transform = <&transform_42keymap>;
-        keys  //                     w   h    x    y     rot    rx    ry
+        keys
             = <&key_physical_attrs 100 100    0    0       0     0     0>
             , <&key_physical_attrs 100 100  100    0       0     0     0>
             , <&key_physical_attrs 100 100  200    0       0     0     0>
@@ -64,7 +74,7 @@
         compatible = "zmk,physical-layout";
         display-name = "40-Key Layout";
         transform = <&transform_40keymap>;
-        keys  //                     w   h    x    y     rot    rx    ry
+        keys
             = <&key_physical_attrs 100 100    0    0       0     0     0>
             , <&key_physical_attrs 100 100  100    0       0     0     0>
             , <&key_physical_attrs 100 100  200    0       0     0     0>
@@ -108,11 +118,10 @@
             ;
     };
 
-    // 論理キー配列へ
     transform_40keymap: transform_40keymap {
         compatible = "zmk,matrix-transform";
         columns = <10>;
-        rows = <4>; 
+        rows = <4>;
         map = <
             RC(0,4) RC(0,3) RC(0,2) RC(0,1) RC(0,0)                    RC(0,5) RC(0,6) RC(0,7) RC(0,8) RC(0,9)
             RC(1,4) RC(1,3) RC(1,2) RC(1,1) RC(1,0)                    RC(1,5) RC(1,6) RC(1,7) RC(1,8) RC(1,9)
@@ -120,12 +129,11 @@
             RC(3,4) RC(3,3) RC(3,2)         RC(3,0) RC(3,1)    RC(3,6) RC(3,5)         RC(3,7) RC(3,8) RC(3,9)
         >;
     };
-    
-    // 論理キー配列へ
+
     transform_42keymap: transform_42keymap {
         compatible = "zmk,matrix-transform";
         columns = <12>;
-        rows = <5>; 
+        rows = <5>;
         map = <
             RC(0,4) RC(0,3) RC(0,2) RC(0,1) RC(0,0)                    RC(0,5) RC(0,6)  RC(0,7) RC(0,8) RC(0,9)
             RC(1,4) RC(1,3) RC(1,2) RC(1,1) RC(1,0)                    RC(1,5) RC(1,6)  RC(1,7) RC(1,8) RC(1,9)
@@ -156,26 +164,25 @@
         };
     };
 
-    // 物理ピン
     kscan0: kscan0 {
         compatible = "zmk,kscan-gpio-matrix";
-        diode-direction = "col2row";    // カソードが行
+        diode-direction = "col2row";
         wakeup-source;
 
         row-gpios
-            = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row0: D0
-            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row1: D1
-            , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row2: D2
-            , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row3: D3
-            ; 
+            = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
 
         col-gpios
-            = <&xiao_d 10 GPIO_ACTIVE_HIGH>                     // col0: D10
-            , <&xiao_d 9  GPIO_ACTIVE_HIGH>                     // col1: D9
-            , <&xiao_d 8  GPIO_ACTIVE_HIGH>                     // col2: D8
-            , <&xiao_d 7  GPIO_ACTIVE_HIGH>                     // col3: D7
-            , <&gpio0  9  GPIO_ACTIVE_HIGH>                     // col4: GPIO9(NFC1)
-            ; 
+            = <&xiao_d 10 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 9  GPIO_ACTIVE_HIGH>
+            , <&xiao_d 8  GPIO_ACTIVE_HIGH>
+            , <&xiao_d 7  GPIO_ACTIVE_HIGH>
+            , <&gpio0  9  GPIO_ACTIVE_HIGH>
+            ;
     };
 
     encoder: encoder {
@@ -202,27 +209,20 @@
         };
     };
 
-    // ペリフェラル->セントラルのためのリスナー
     peripheral_listener: peripheral_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split>;
-        // input-processors = 
-        //     <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-        //     <&zip_xy_to_scroll_mapper>,
-        //     <&zip_scroll_scaler 1 16>;
     };
 
-    // セントラルのためのリスナー（後でdeviceを割当）
     central_listener: central_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
     };
 
-    /* 充電ステータス */
     chg_stat: chg_stat {
         compatible = "custom,chg-stat";
-        gpios = <&gpio0 17 GPIO_ACTIVE_LOW>; /* Low=充電中 */
+        gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
         status = "okay";
     };
 };
