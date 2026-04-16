@@ -1,1 +1,5 @@
 #include "lism.dtsi"
+
+&encoder {
+    status = "okay";
+};
