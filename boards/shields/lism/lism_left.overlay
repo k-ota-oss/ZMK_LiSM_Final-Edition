@@ -23,3 +23,8 @@
 &peripheral_listener {
     status = "disabled";
 };
+
+&sensors {
+    sensors = <&encoder>;
+    triggers-per-rotation = <12>;
+};
