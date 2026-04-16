@@ -1,11 +1,12 @@
-if SHIELD_LISM_L
+if SHIELD_LISM_LEFT
 
 config ZMK_KEYBOARD_NAME
     default "LisM"
 
 endif
 
-if SHIELD_LISM_R
+
+if SHIELD_LISM_RIGHT
 
 config ZMK_KEYBOARD_NAME
     default "LisM"
@@ -14,6 +15,9 @@ config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
 config ZMK_POINTING
+    default y
+
+config ZMK_MOUSE
     default y
 
 config PAW3222
