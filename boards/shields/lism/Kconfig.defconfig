@@ -1,12 +1,11 @@
-if SHIELD_LISM_LEFT
+if SHIELD_LISM_L
 
 config ZMK_KEYBOARD_NAME
     default "LisM"
 
 endif
 
-
-if SHIELD_LISM_RIGHT
+if SHIELD_LISM_R
 
 config ZMK_KEYBOARD_NAME
     default "LisM"
