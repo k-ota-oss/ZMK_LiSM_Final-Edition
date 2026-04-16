@@ -1,5 +1,12 @@
 #include "lism.dtsi"
 
+/ {
+    encoder_msc: encoder_msc {
+        compatible = "zmk,behavior-sensor-rotate";
+        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+    };
+};
+
 &encoder {
     status = "okay";
 };
