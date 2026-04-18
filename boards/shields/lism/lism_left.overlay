@@ -26,5 +26,5 @@
 
 &sensors {
     sensors = <&encoder>;
-    triggers-per-rotation = <12>;
+    triggers-per-rotation = <1>;
 };
