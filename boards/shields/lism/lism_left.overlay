@@ -2,7 +2,6 @@
 
 &encoder {
     status = "okay";
-    steps = <12>;
 };
 
 &sensors {
