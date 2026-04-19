@@ -5,13 +5,6 @@
 &spi0 {
     status = "disabled";
 };
-&encoder {
-    status = "okay";
-};
-
-&spi0 {
-    status = "disabled";
-};
 
 &kscan0 {
     row-gpios
