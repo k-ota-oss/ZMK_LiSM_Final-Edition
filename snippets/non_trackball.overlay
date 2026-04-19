@@ -6,7 +6,6 @@
     status = "disabled";
 };
 
-// 物理ピン
 &kscan0 {
     row-gpios
         = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
