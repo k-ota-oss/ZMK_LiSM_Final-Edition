@@ -61,7 +61,7 @@ jobs:
           west update
           west zephyr-export
 
-      - name: Build RIGHT (Studio)
+      - name: Build RIGHT
         working-directory: /tmp/zmk-config
         run: |
           west build -s zmk/app -d build-right -b seeeduino_xiao_ble -S "studio-rpc-usb-uart trackball-central" -- \
