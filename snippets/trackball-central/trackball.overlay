@@ -17,9 +17,10 @@
 
 &zip_temp_layer {
     excluded-positions = <
-        7   // I
-        16  // J
-        18  // L
+        5
+        6
+        7
+        16
     >;
 };
 
@@ -28,5 +29,12 @@
     device = <&trackball_central>;
     input-processors =
         <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-        <&zip_temp_layer 1 400>;
+        <&zip_temp_layer 6 400>;
+
+    scroller {
+        layers = <5>;
+        input-processors =
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_scaler 1 16>;
+    };
 };
