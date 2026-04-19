@@ -1,6 +1,6 @@
 &encoder {
     status = "okay";
-    steps = <24>;
+    steps = <12>;
 };
 
 &spi0 {
@@ -25,5 +25,5 @@
 };
 
 &sensors {
-    triggers-per-rotation = <24>;
+    triggers-per-rotation = <12>;
 };
