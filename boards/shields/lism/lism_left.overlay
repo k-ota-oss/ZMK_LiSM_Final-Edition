@@ -1,1 +1,10 @@
 #include "lism.dtsi"
+
+&encoder {
+    status = "okay";
+};
+
+&sensors {
+    sensors = <&encoder>;
+    triggers-per-rotation = <12>;
+};
